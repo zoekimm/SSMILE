@@ -29,6 +29,6 @@ def detect_face(image, sf, neighbors, min_size): #opencv
         cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
 
-def detect_face(modelpath): #dlib
+def detect_face_dlib(modelpath): #dlib
     frontalFaceDetector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor(modelpath)
