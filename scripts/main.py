@@ -1,4 +1,5 @@
 import cv2 #openCV
+import dlib
 
 def read_image():
     path = input('Type the full path for your image\n')
@@ -18,7 +19,7 @@ def read_video():
             cv2.imshow("Selected video", frame)  # display the image
             cv2.waitKey(0)
 
-def detect_face(image, sf, neighbors, min_size):
+def detect_face(image, sf, neighbors, min_size): #opencv
     gimage =cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
@@ -26,3 +27,8 @@ def detect_face(image, sf, neighbors, min_size):
 
     for (x, y, w, h) in faces:
         cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+
+
+def detect_face(modelpath): #dlib
+    frontalFaceDetector = dlib.get_frontal_face_detector()
+    predictor = dlib.shape_predictor(modelpath)
