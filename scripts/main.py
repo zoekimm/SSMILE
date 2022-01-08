@@ -20,7 +20,7 @@ def read_video():
             cv2.waitKey(0)
 
 def detect_face(image, sf, neighbors, min_size): #opencv
-    gimage =cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    gimage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
     faces = face_cascade.detect(gimage, sf, neighbors, min_size)
