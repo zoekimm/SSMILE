@@ -1,6 +1,6 @@
 from tkinter import *
-import cv2 #openCV
-import dlib
+import cv2
+#import dlib
 
 def takeImage(window):
     imageLabel = Label(window, text = "Type the full path for your image", font = ("Arial Bold", 20))
@@ -12,9 +12,11 @@ def takeImage(window):
     clickButton1 = Button(window, text = "Load", command = loadImage(imageLabel))
     clickButton1.grid(column=2, row=0)
 
-    img = cv2.imread(imagePath) 
-    cv2.imshow("Selected image", img) #display 
-    cv2.waitKey(0)
+    print(imagePath.get())
+
+    #img = cv2.imread(imagePath.get()) 
+    #cv2.imshow("Selected image", img) #display 
+    #cv2.waitKey(0)
 
 def takeVideo(window):
     videoLabel = Label(window, text = "Type the full path for your video", font = ("Arial Bold", 20))
@@ -26,16 +28,16 @@ def takeVideo(window):
     clickButton2 = Button(window, text = "Load", command = loadVideo(videoLabel))
     clickButton2.grid(column=2, row=5)
 
-    vid = cv2.VideoCapture(videoPath)  
+    #vid = cv2.VideoCapture(videoPath)  
 
-    if not vid.isOpened():
-        print('The program failed to open the video\n') #add error message 
+    #if not vid.isOpened():
+    #    print('The program failed to open the video\n') #add error message 
 
-    while vid.isOpened():
-        ret, frame = vid.read()
-        if ret:
-            cv2.imshow("Selected video", frame)  # display the image
-            cv2.waitKey(0)
+    #while vid.isOpened():
+    #    ret, frame = vid.read()
+    #    if ret:
+    #        cv2.imshow("Selected video", frame)  # display the image
+    #        cv2.waitKey(0)
 
 def loadImage(imageLabel): 
     imageLabel.configure(text= "Your image was successfully loaded")
@@ -44,12 +46,13 @@ def loadVideo(videoLabel):
     videoLabel.configure(text= "Your video was successfully loaded")
 
 def main():
-    print('here')
     window = Tk()
     window.title("SSMILE")
     window.geometry('500x300')
+
     takeImage(window)
     takeVideo(window)
+
     window.mainloop()
 
 if __name__ == "__main__":
