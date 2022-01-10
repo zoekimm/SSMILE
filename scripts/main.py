@@ -1,5 +1,16 @@
+from collections import OrderedDict
 import cv2 #openCV
-import dlib
+#import dlib
+
+FACIAL_LANDMARKS_INDEXES = OrderedDict([
+	("mouth", (48, 68)),
+	("right_eyebrow", (17, 22)),
+	("left_eyebrow", (22, 27)),
+	("right_eye", (36, 42)),
+	("left_eye", (42, 48)),
+	("nose", (27, 35)),
+	("jaw", (0, 17))
+])
 
 def detect_face(image, sf, neighbors, min_size): #opencv
     gimage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
