@@ -1,33 +1,40 @@
-from collections import OrderedDict
-import cv2 #openCV
-#import dlib
+import dlib
+import cv2
+import numpy as np
 
-FACIAL_LANDMARKS_INDEXES = OrderedDict([
-	("mouth", (48, 68)),
-	("right_eyebrow", (17, 22)),
-	("left_eyebrow", (22, 27)),
-	("right_eye", (36, 42)),
-	("left_eye", (42, 48)),
-	("nose", (27, 35)),
-	("jaw", (0, 17))
-])
+detector = dlib.get_frontal_face_detector()
+shape_predictor = dlib.shape_predictor('/content/shape_predictor_68_face_labels_GTX.dat')
+img = cv2.imread('/content/human_face.jpg')
+grayimg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+mouthpoints = []
 
-def detect_face(image, sf, neighbors, min_size): #opencv
-    gimage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-    eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-    faces = face_cascade.detect(gimage, sf, neighbors, min_size)
+faces = detector(grayimg)
 
-    for (x, y, w, h) in faces:
-        cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+for face in faces:
+	
+  labels = shape_predictor(grayimg, face)
 
+  for n in range(0,68):
+      x = labels.part(n).x
+      y = labels.part(n).y
+      #cv2.circle(img, (x, y), 1, (0, 0, 255), -1)
+      if n in range(48, 67):
+        mouthpoints.append((x,y))
 
-def detect_face_dlib(grayimage, modelpath): #dlib
-    frontalFaceDetector = dlib.get_frontal_face_detector()
-    predictor = dlib.shape_predictor(modelpath)
-    faces = frontalFaceDetector(grayimage)
-    labels = predictor(grayimage, faces)
+  #print(mouthpoints)
 
-    for k in range(0, len(allFaces)):
-        faceRectangleDlib = dlib.rectangle(int(allFaces[k].left()),int(allFaces[k].top()),
-        int(allFaces[k].right()),int(allFaces[k].bottom()))
+  xpoint = [x[0] for x in mouthpoints]
+  ypoint = [x[1] for x in mouthpoints]
+  
+  for i in mouthpoints:
+    if i[0] == min(xpoint):
+      leftend = i
+    if i[0] == max(xpoint):
+      rightend = i
+
+  #cv2.circle(image, center_coordinates, radius, color, thickness)
+  cv2.circle(img, (leftend), 1, (0, 0, 255), -1) 
+  cv2.circle(img, (rightend), 1, (0, 0, 255), -1)
+  cv2.circle(img, ((leftend[0] + 10, leftend[1])), 1, (0, 0, 255), -1)
+
+#cv2.imshow(img)
