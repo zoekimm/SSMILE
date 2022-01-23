@@ -2,6 +2,18 @@ import dlib
 import cv2
 import numpy as np
 
+def get_angle(leftend, rightend):
+    x = np.array(leftend)
+    y = np.array((leftend[0] + 2, leftend[1]))
+    z = np.array(rightend)
+
+    xy = x - y
+    yz = z - y
+
+    cos_ang = np.dot(xy, yz) / (np.linalg.norm(xy) * np.linalg.norm(yz))
+    ang = np.arccos(cos_ang)
+    return np.degrees(ang)
+
 detector = dlib.get_frontal_face_detector()
 shape_predictor = dlib.shape_predictor('/content/shape_predictor_68_face_labels_GTX.dat')
 img = cv2.imread('/content/human_face.jpg')
@@ -36,5 +48,9 @@ for face in faces:
   cv2.circle(img, (leftend), 1, (0, 0, 255), -1) 
   cv2.circle(img, (rightend), 1, (0, 0, 255), -1)
   cv2.circle(img, ((leftend[0] + 10, leftend[1])), 1, (0, 0, 255), -1)
+
+  angle = get_angle(leftend, rightend)
+  if angle <= 175:
+      print('!')
 
 #cv2.imshow(img)
