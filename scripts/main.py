@@ -50,13 +50,18 @@ def get_labels(img, face_detector, shape_predictor):
         angle = get_angle(leftend, rightend)
         if angle <= 175:
             print('!')
+        else:
+            print('symmetric')
 
     #cv2.imshow(img)
 
 def main():
     face_detector = dlib.get_frontal_face_detector()
-    shape_predictor = dlib.shape_predictor('/content/shape_predictor_68_face_labels_GTX.dat')
+    shape_predictor = dlib.shape_predictor('/Users/minjeongkim/Desktop/SSMILE/scripts/shape_predictor_68_face_landmarks_GTX.dat')
 
-    img = cv2.imread('human_face.jpg')
+    img = cv2.imread('/Users/minjeongkim/Desktop/SSMILE/scripts/human_face.jpg')
     
     get_labels(img, face_detector, shape_predictor)
+
+if __name__ == "__main__":
+    main()
