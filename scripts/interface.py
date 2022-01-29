@@ -1,5 +1,6 @@
 from tkinter import *
 import cv2
+import face_detection
 #import dlib
 
 def takeImage(window, path):
@@ -12,9 +13,10 @@ def takeImage(window, path):
     def loadImage(): 
         imageLabel.configure(text = "Your image was successfully loaded")
         img = cv2.imread(path.get()) 
-        cv2.imshow("Selected image", img) #display 
-        if cv2.waitKey(0) & 0xFF == ord('q'):
-            cv2.destroyAllWindows()
+        face_detection.main(path.get())
+        #cv2.imshow("Selected image", img) #display 
+        #if cv2.waitKey(0) & 0xFF == ord('q'):
+        #    cv2.destroyAllWindows()
 
     clickButton1 = Button(window, text = "Load", command = loadImage)
     clickButton1.grid(column=2, row=0)

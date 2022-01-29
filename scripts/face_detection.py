@@ -42,7 +42,7 @@ def get_labels(img, face_detector, shape_predictor):
             if i[0] == max(xpoint):
                 rightend = i
 
-        #cv2.circle(image, center_coordinates, radius, color, thickness)
+        #cv2.circle(img, center_coordinates, radius, color, thickness)
         cv2.circle(img, (leftend), 1, (0, 0, 255), -1) 
         cv2.circle(img, (rightend), 1, (0, 0, 255), -1)
         cv2.circle(img, ((leftend[0] + 10, leftend[1])), 1, (0, 0, 255), -1)
@@ -53,7 +53,9 @@ def get_labels(img, face_detector, shape_predictor):
         else:
             print(angle)
 
-    #cv2.imshow(img)
+    cv2.imshow("Selected image", img) #display 
+    if cv2.waitKey(0) & 0xFF == ord('q'):
+        cv2.destroyAllWindows()
 
 def main(img_file_path):
     face_detector = dlib.get_frontal_face_detector()
