@@ -15,7 +15,7 @@ def nextPage():
 
 def prevPage():
     window.destroy()
-    import audio_page2
+    #import audio_page2
     
 Label(
     window,
