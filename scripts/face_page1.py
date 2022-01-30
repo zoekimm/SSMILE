@@ -1,40 +1,40 @@
 from tkinter import *
-import cv2
+from tkinter.filedialog import askopenfile
+from PIL import Image, ImageTk
+
+#face detection page (image)
+
+HEIGHT = 800
+WIDTH = 800
 
 window = Tk()
 window.title("SSMILE")
-window.geometry('500x300')
-window['bg'] = '#121c26'
-f = ("Times bold", 14)
- 
-imageLabel = Label(window, 
-        text = "Face Detection",
-        font = ("Arial Bold", 20),
-        bg = "#121c26",
-        fg="white")
-imageLabel.grid(column=1, row=0)
 
-instructions = Label(window,
-        text = "Type the full path for your image",
-        font = f, 
-        bg = "#121c26",
-        fg="white")
-instructions.grid(column=1, row=1)
+frame = Frame(window)
+frame.pack()
+
+canvas = Canvas(frame, bg = "white", width = WIDTH, height = HEIGHT)
+canvas.pack()
 
 def open_file():
-    load_text.set("loading...")
+        load_text.set("loading...")
+        file = askopenfile(parent = window, mode='rb', title = "Choose a file", filetypes=[("Image File",'.jpg')])
+
+canvas.create_text(WIDTH/2, 50, fill = "Black", font = "Roboto 35 bold", text = "Face Detection")
+canvas.create_text(WIDTH/2, 95, fill = "Black", font = "Roboto 20 bold", text = "Type the full path for your image")
 
 load_text = StringVar()
 
 load_button = Button(window,
         textvariable = load_text,
         command = lambda:open_file(),
-        font = f, bg = "#121c26",
+        highlightbackground = 'white',
         fg = "black",
         height=2,
 width=15)
 
 load_text.set("Load")
-load_button.grid(column=1, row=2)
+
+load_button.place(x = 400, y = 700, anchor = "center")
 
 window.mainloop()
