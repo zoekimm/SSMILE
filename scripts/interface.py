@@ -1,25 +1,29 @@
 from tkinter import *
 import cv2
-import face_detection
+#import face_detection
 #import dlib
 
 def takeImage(window, path):
     imageLabel = Label(window, text = "Type the full path for your image", font = ("Arial Bold", 20))
-    imageLabel.grid(column=0, row=0)
+    imageLabel.pack(fill=X, expand=TRUE, side=TOP)
 
     imagePath = Entry(window, textvariable=path, width=10)
-    imagePath.grid(column=1, row=0)
+    imagePath.pack(fill=X, expand=TRUE, side=TOP)
 
     def loadImage(): 
         imageLabel.configure(text = "Your image was successfully loaded")
         img = cv2.imread(path.get()) 
-        face_detection.main(path.get())
+        
+        cv2.imshow("Selected image", img)
+
+        #face_detection.main(path.get())
+        
         #cv2.imshow("Selected image", img) #display 
         #if cv2.waitKey(0) & 0xFF == ord('q'):
         #    cv2.destroyAllWindows()
 
     clickButton1 = Button(window, text = "Load", command = loadImage)
-    clickButton1.grid(column=2, row=0)
+    clickButton1.pack(fill=X, expand=TRUE, side=BOTTOM)
     
 
 def takeVideo(window, path):
