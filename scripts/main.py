@@ -21,7 +21,7 @@ def prevPage():
     window.destroy()
     #import audio_page2
 
-canvas.create_text(WIDTH/2, 50, fill = "Black", font = "Roboto 35 bold", text = "SSMILE")
+canvas.create_text(WIDTH/2, 50, fill = "Black", font = "Roboto 35 bold", text = "S S M I L E")
 canvas.create_text(WIDTH/2, 95, fill = "Black", font = "Roboto 20 bold", text = "Stroke Screening Made Instant, Live, and Easy :)")
 
 emoji_image = ImageTk.PhotoImage(file="/Users/zoekim/Desktop/git_SSMILE/SSMILE/scripts/smile_emoji3.png")
