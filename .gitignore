@@ -1,4 +1,5 @@
 scripts/human_face.jpg
+scripts/human_face2.jpg
 .DS_Store
 scripts/__pycache__/face_detection.cpython-36.pyc
 scripts/__pycache__/interface.cpython-36.pyc
