@@ -9,12 +9,11 @@ import streamlit as st
 def main():
 
     st.title('SSMILE')
-    st.header('Stroke Screening Made Instant, Live, and Easy')
-
     pages = ['Home', 'Face Detection', 'Audio Evaluation']
     choice = st.sidebar.radio('Select Pages', pages)
     
     if choice == 'Home':
+        st.header('Stroke Screening Made Instant, Live, and Easy')
         st.subheader('Why SSMILE?')
         st.markdown("""
         With fifteen million cases of stroke worldwide every year and many more 
