@@ -4,6 +4,7 @@ from face_detection import get_labels
 import dlib
 import cv2
 import os
+import numpy as np
 
 path = '/Users/zoekim/Desktop/g/SSMILE/scripts/'
 @st.cache
@@ -13,7 +14,6 @@ def load_image(image_file):
 
 def run_face_detection():
     st.title('Face Detection')
-    st.write('Face Detection Page')
 
     img_file = st.file_uploader('Upload Your Image', type = ['png', 'jpeg', 'jpg'])
     if img_file is None:
@@ -36,3 +36,19 @@ def run_face_detection():
         cv2.imwrite('new.jpg', new_img)
         st.image(Image.open('/Users/zoekim/Desktop/g/SSMILE/scripts/new.jpg'))
         os.remove('/Users/zoekim/Desktop/g/SSMILE/scripts/new.jpg')
+
+
+    camera_file = st.camera_input("Upload your picture by web camera")
+    if camera_file is not None:
+        bytes_data = camera_file.getvalue()
+        cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
+
+        if st.button("Detect"):
+            face_detector = dlib.get_frontal_face_detector()
+            shape_predictor = dlib.shape_predictor('/Users/zoekim/Desktop/g/SSMILE/scripts/shape_predictor_68_face_landmarks_GTX.dat')
+            
+            new_img = get_labels(cv2_img, face_detector, shape_predictor)
+            cv2.imwrite('new.jpg', new_img)
+            st.image(Image.open('/Users/zoekim/Desktop/g/SSMILE/scripts/new.jpg'))
+            os.remove('/Users/zoekim/Desktop/g/SSMILE/scripts/new.jpg')
+        
