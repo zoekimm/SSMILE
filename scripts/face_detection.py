@@ -1,6 +1,7 @@
 import dlib
 import cv2
 import numpy as np
+from PIL import Image
 
 def get_angle(leftend, rightend):
     x = np.array(leftend)
@@ -14,6 +15,9 @@ def get_angle(leftend, rightend):
 
 def get_labels(img, face_detector, shape_predictor):
 
+    #img = np.asanyarray(img)
+    img = cv2.convertScaleAbs(img, alpha=0.03)
+    #img = np.array(cv2.convert(img))
     grayimg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     mouthpoints = []
@@ -53,9 +57,11 @@ def get_labels(img, face_detector, shape_predictor):
         else:
             print(angle)
 
-    cv2.imshow("Selected image", img) #display 
-    if cv2.waitKey(0) & 0xFF == ord('q'):
-        cv2.destroyAllWindows()
+    return img
+
+    #cv2.imshow("Selected image", img) #display 
+    #if cv2.waitKey(0) & 0xFF == ord('q'):
+    #    cv2.destroyAllWindows()
 
 def main(img_file_path):
     face_detector = dlib.get_frontal_face_detector()

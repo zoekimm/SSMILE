@@ -10,3 +10,6 @@ scripts/__pycache__/face_page1.cpython-39.pyc
 scripts/smile_emoji.png
 scripts/smile_emoji2.png
 scripts/smile_emoji3.png
+Pipfile
+.gitignore
+Pipfile.lock
