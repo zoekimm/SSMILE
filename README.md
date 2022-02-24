@@ -1,6 +1,6 @@
 # SSMILE (Stroke Screening Made Instant, Live, and Easy)
 
-With fifteen million cases of stroke worldwide every year and many more complications arising from stroke, early detection of stroke is significant to prevent any further brain damage and to possibly decrease both mortality and morbidity. This Python GUI project helps one determine whether one has facial asymmetry, one of the most common symptoms of stroke, with an image of one's face or through web camera.
+With fifteen million cases of stroke worldwide every year and many more complications arising from stroke, early detection of stroke is significant to prevent any further brain damage and to possibly decrease both mortality and morbidity. This web application helps one determine whether one has facial asymmetry, one of the most common symptoms of stroke, with an image of one's face or through web camera.
 
 *This project is an extension of a hacakthon team project described below.*
 
@@ -11,7 +11,7 @@ With fifteen million cases of stroke worldwide every year and many more complica
 * OpenCV v.
 * dlib v.
 * SequenceMatcher v.
-* Tkinter v.8.6
+* Streamlit
 
 ## Archive : Project Description from [DevPost](https://devpost.com/software/ssmile) and [Git](https://github.com/we437b/SSMILE)
 
