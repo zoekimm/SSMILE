@@ -13,4 +13,4 @@ def evaluate_audio(file_name):
         r.adjust_for_ambient_noise(source) 
         audio = r.record(source)
 
-    r.recognize_google(audio)
+    return r.recognize_google(audio)
